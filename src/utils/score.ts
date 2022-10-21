@@ -9,10 +9,11 @@
     }
     addScore(){
       this.score+=1
+      this.addLevel()
     }
     addLevel(){
-      if(this.score%this.levelUpScore===0){
-        this.level = this.score/this.levelUpScore
+      if(this.score%this.levelUpScore===0&&this.level!==10){
+        this.level = this.score/this.levelUpScore + 1
       }
     }
  }

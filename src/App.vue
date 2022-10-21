@@ -2,14 +2,13 @@
   <div class="gameBox">
     <div class="area">
       <div class="snake">
-        <div v-for="(item,index) in snake.positionArr" :key="index" :style="{'left':item.x+'px','top':item.y+'px'}"  >{{item}}</div>
+        <div v-for="(item,index) in gameControl.snake.positionArr" :key="index" :style="{'left':item.x+'px','top':item.y+'px'}"  ></div>
       </div>
-
-      <!-- <div ref="food" class="food" :style="{'left':gameControl.food.positionX+'px','top':gameControl.food.positionY+'px'}" ></div> -->
+      <div ref="food" class="food" :style="{'left':gameControl.food.positionX+'px','top':gameControl.food.positionY+'px'}" ></div>
     </div>
     <div class="score">
-      <div>得分：{{score}}</div>
-      <div>等级：{{level}}</div>
+      <div>得分：{{gameControl.score.score}}</div>
+      <div>等级：{{gameControl.score.level}}</div>
     </div>
   </div>
 </template>
@@ -17,8 +16,8 @@
   import { ref,reactive } from '@vue/runtime-core'
   import GameControl from './utils/gameCntrol'
   
-  let gameControl = new GameControl()
-  let positionArr = reactive(gameControl.snake)
+  let gameControl = reactive(new GameControl())
+  gameControl.move()
 </script>
 <style lang="scss" scoped>
 $bg:#B9DAAA;
@@ -47,19 +46,19 @@ $bg:#B9DAAA;
   }
   .snake{
     div{
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       background: #000;
-      border-left: 1px solid $bg;
+      border: 1px solid $bg;
       position: absolute;
     }
   }
   .food{
-    width: 10px;
-    height: 10px;
+    position: absolute;
+    width: 9px;
+    height: 9px;
     background: blue;
     border-left: 1px solid $bg;
-    position: absolute;
   }
 }
 </style>
